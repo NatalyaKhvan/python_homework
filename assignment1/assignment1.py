@@ -26,32 +26,32 @@ def greet(name):
 # Again, as you complete each function, you run the test to see whether everything is correct.
 
 
-def calc(value1, value2, operation="multiply"):
+def calc(value_1, value_2, operation="multiply"):
     try:
         match operation:
             case "add":
-                return value1 + value2
+                return value_1 + value_2
             case "subtract":
-                return value1 - value2
+                return value_1 - value_2
             case "divide":
                 try:
-                    return value1 / value2
+                    return value_1 / value_2
                 except ZeroDivisionError:
                     return "You can't divide by 0!"
             case "modulo":
                 try:
-                    return value1 % value2
+                    return value_1 % value_2
                 except ZeroDivisionError:
                     return "You can't divide by 0!"
             case "int_divide":
                 try:
-                    return value1 // value2
+                    return value_1 // value_2
                 except ZeroDivisionError:
                     return "You can't divide by 0!"
             case "power":
-                return value1**value2
+                return value_1**value_2
             case _:
-                return value1 * value2
+                return value_1 * value_2
     except TypeError:
         return "You can't perform that operation on those values!"
 
@@ -63,9 +63,9 @@ def calc(value1, value2, operation="multiply"):
 # Error handling: The function might be called with a bad parameter. For example, the caller might try to convert the string "nonsense" to a float. Catch the error that occurs in this case. If this error occurs, return the string You can't convert {value} into a {type}., except you use the value and data type that are passed as parameters -- so again you use a formatted string.
 
 
-def data_type_conversion(value, dataType):
+def data_type_conversion(value, data_type):
     try:
-        match dataType:
+        match data_type:
             case "float":
                 return float(value)
             case "str":
@@ -73,9 +73,9 @@ def data_type_conversion(value, dataType):
             case "int":
                 return int(value)
             case _:
-                return f"Unsupported data type: {dataType}"
+                return f"Unsupported data type: {data_type}"
     except ValueError:
-        return f"You can't convert {value} into a {dataType}"
+        return f"You can't convert {value} into a {data_type}"
 
 
 # -----------------------------------------------
@@ -164,12 +164,12 @@ def student_scores(arg, **kwargs):
 
 def titleize(string):
 
-    littleWords = ["a", "on", "an", "the", "of", "and", "is", "in"]
+    little_words = ["a", "on", "an", "the", "of", "and", "is", "in"]
     words = string.split()
-    lastWordIndex = len(words) - 1
+    last_word_index = len(words) - 1
 
     for i, word in enumerate(words):
-        if i != 0 and i != lastWordIndex and word in littleWords:
+        if i != 0 and i != last_word_index and word in little_words:
             words[i] = word.lower()
         else:
             words[i] = word.capitalize()
