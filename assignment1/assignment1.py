@@ -13,7 +13,7 @@ def hello():
 
 
 def greet(name):
-    return f"Hello {name}"
+    return f"Hello, {name}!"
 
 
 # -----------------------------------------------
@@ -53,7 +53,7 @@ def calc(value_1, value_2, operation="multiply"):
             case _:
                 return value_1 * value_2
     except TypeError:
-        return "You can't perform that operation on those values!"
+        return "You can't multiply those values!"
 
 
 # -----------------------------------------------
@@ -75,7 +75,7 @@ def data_type_conversion(value, data_type):
             case _:
                 return f"Unsupported data type: {data_type}"
     except ValueError:
-        return f"You can't convert {value} into a {data_type}"
+        return f"You can't convert {value} into a {data_type}."
 
 
 # -----------------------------------------------
@@ -220,10 +220,16 @@ def pig_latin(string):
             pig = word + "ay"
         else:
             consonants = ""
-            for letter in word:
-                if letter in vowels:
+            i = 0
+            while i < len(word):
+                if word[i : i + 2] == "qu":
+                    consonants += "qu"
+                    i += 2
+                elif word[i] not in vowels:
+                    consonants += word[i]
+                    i += 1
+                else:
                     break
-                consonants += letter
             pig = word[len(consonants) :] + consonants + "ay"
 
         result.append(pig)
