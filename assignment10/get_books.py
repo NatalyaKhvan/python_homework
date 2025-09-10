@@ -3,8 +3,9 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
-import time
 import json
 
 # Setup Chrome driver
@@ -15,11 +16,13 @@ driver.get(
     "https://durhamcounty.bibliocommons.com/v2/search?query=learning%20spanish&searchType=smart"
 )
 
-# Let page load
-time.sleep(3)
-
-# Find all search result items
-items = driver.find_elements(By.CSS_SELECTOR, "li.row.cp-search-result-item")
+# Wait until the search results are visible
+wait = WebDriverWait(driver, 10)
+items = wait.until(
+    EC.presence_of_all_elements_located(
+        (By.CSS_SELECTOR, "li.row.cp-search-result-item")
+    )
+)
 
 results = []
 
@@ -45,16 +48,9 @@ for item in items:
         except NoSuchElementException:
             format_year_text = "Unknown"
 
-        # Split into Format and Year
-        if "," in format_year_text:
-            format_, year = map(str.strip, format_year_text.split(",", 1))
-        else:
-            format_ = format_year_text
-            year = "Unknown"
-
         # Add to results
         results.append(
-            {"Title": title, "Author": authors, "Format": format_, "Year": year}
+            {"Title": title, "Author": authors, "Format-Year": format_year_text}
         )
 
     except Exception as e:
@@ -62,7 +58,7 @@ for item in items:
 
 # Create DataFrame
 df = pd.DataFrame(results)
-print(df[["Title", "Author", "Format", "Year"]])
+print(df)
 
 # Write CSV
 df.to_csv("assignment10/get_books.csv", index=False)
