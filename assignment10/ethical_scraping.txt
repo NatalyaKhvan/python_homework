@@ -1,0 +1,21 @@
+1. Which sections of the website are restricted for crawling?
+
+/w/
+/api/
+/trap/
+/wiki/Special:
+/wiki/Spezial:
+/wiki/Spesial:
+/wiki/Special%3A
+/wiki/Spezial%3A
+/wiki/Spesial%3A
+
+2. Are there specific rules for certain user agents?
+
+Some user agents are completely blocked from crawling Wikipedia, including MJ12bot, Mediapartners-Google*, UbiCrawler, DOC, Zao, Zealbot, MSIECrawler, SiteSnagger, WebStripper, WebCopier, Fetch, Offline Explorer, Teleport, TeleportPro, WebZIP, linko, HTTrack, Microsoft.URL.Control, Xenu, larbin, libwww, ZyBORG, and Download Ninja.
+Some user agents are partially allowed with limitations. For example, SemrushBot is permitted to crawl but must respect a Crawl-delay of 5 seconds.
+
+3. Websites use robots.txt to tell crawlers which pages they can or cannot visit. This helps keep private parts safe and avoid slowing down the site. Following these rules is part of ethical web scraping.
+
+
+

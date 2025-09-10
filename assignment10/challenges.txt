@@ -1,0 +1,3 @@
+Finding and waiting for page elements was sometimes tricky.
+Retrieving information like book format and year took some time.
+Reading robots.txt helped understand which parts of a site can be accessed safely.
